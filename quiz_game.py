@@ -1,41 +1,32 @@
+def check_answer(question, correct_answer):
+    answer = input(question)
+    if answer.lower() == correct_answer.lower():
+        print("Correct!")
+        return True
+    else:
+        print(f"Incorrect. {question.split()[2]} stands for: {correct_answer}")
+        return False
+
+
 print("Welcome to my computer quiz!")
-
 count = 0
-answers = 0
+score = 0
 
-answer = input("Do you want to play? ")
-
-if answer.lower() != "yes":
+if input("Do you want to play? ").lower() != "yes":
     print("Okay, maybe next time")
     quit()
 
-print("Okay! Let's play :)")
+print("Okay, let's play :)")
 
-answer = input("What does CPU stand for? ")
-answers += 1
+questions = {
+    "What does CPU stand for? ": "central processing unit",
+    "What does GPU stand for? ": "graphics processing unit",
+    "What does RAM stand for? ": "random access memory"
+}
 
-if answer.lower() == "central processing unit":
-    print("Correct!")
+for question, correct_answer in questions.items():
     count += 1
-else:
-    print("Incorrect. CPU stands for: central processing unit")
+    if check_answer(question, correct_answer):
+        score += 1
 
-answer = input("What does GPU stand for? ")
-answers += 1
-
-if answer.lower() == "graphics processing unit":
-    print("Correct!")
-    count += 1
-else:
-    print("Incorrect. GPU stands for: graphics processing unit")
-
-answer = input("What does RAM stand for? ")
-answers += 1
-
-if answer.lower() == "random access memory":
-    print("Correct!")
-    count += 1
-else:
-    print("Incorrect. RAM stands for: random access memory")
-
-print(f"You got {count} out of {answers}")
+print(f"You got {score} out of {count}")
